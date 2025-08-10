@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MTT Finance Tools</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>MTT Finance Tools</h1>
+    <p>Your All-in-One Financial Toolkit</p>
+  </header>
+
+  <!-- Main Tools Grid -->
+  <section id="tools-grid">
+    <div class="tool-card" onclick="showTool('loan')">Loan Calculator</div>
+    <div class="tool-card" onclick="showTool('currency')">Currency Converter</div>
+    <div class="tool-card" onclick="showTool('investment')">Investment Calculator</div>
+    <div class="tool-card" onclick="showTool('forecast')">Forecasting Tool</div>
+    <div class="tool-card" onclick="showTool('balance')">Balancing / T-Account</div>
+    <div class="tool-card" onclick="showTool('tax')">Income Tax Calculator</div>
+    <div class="tool-card" onclick="showTool('scientific')">Scientific Calculator</div>
+    <div class="tool-card" onclick="showTool('gross')">Gross Profit & Margin Tool</div>
+    <div class="tool-card" onclick="showTool('cogs')">COGS & Markup Tool</div>
+    <!-- Operations Management Tools -->
+    <div class="tool-card" onclick="showTool('scheduling')">Scheduling Tool</div>
+    <div class="tool-card" onclick="showTool('inventory')">Inventory Management</div>
+    <div class="tool-card" onclick="showTool('decision')">Decision Analysis</div>
+  </section>
+
+  <!-- Tool Sections -->
+  <section id="tools-sections">
+    <!-- Loan Calculator -->
+    <div id="loan" class="tool-section">
+      <h2>Loan Calculator</h2>
+      <label>Loan Amount: <input type="number" id="loan-amount" /></label>
+      <label>Interest Rate (% per year): <input type="number" id="loan-rate" /></label>
+      <label>Years: <input type="number" id="loan-years" /></label>
+      <button onclick="calculateLoan()">Calculate</button>
+      <p id="loan-result"></p>
+      <button class="back-btn" onclick="goBack()">Back to Tools</button>
+    </div>
+
+    <!-- Currency Converter -->
+    <div id="currency" class="tool-section">
+      <h2>Currency Converter</h2>
+      <label>Amount (PHP): <input type="number" id="currency-amount" /></label>
+      <label>Convert to:
+        <select id="currency-target">
+          <option value="USD">USD</option>
+          <option value="EUR">EUR</option>
+          <option value="JPY">JPY</option>
+        </select>
+      </label>
+      <button onclick="convertCurrency()">Convert</button>
+      <p id="currency-result"></p>
+      <button class="back-btn" onclick="goBack()">Back to Tools</button>
+    </div>
+
+    <!-- Investment Calculator -->
+    <div id="investment" class="tool-section">
+      <h2>Investment Calculator</h2>
+      <label>Initial Amount: <input type="number" id="invest-principal" /></label>
+      <label>Annual Interest Rate (%): <input type="number" id="invest-rate" /></label>
+      <label>Years: <input type="number" id="invest-years" /></label>
+      <button onclick="calculateInvestment()">Calculate</button>
+      <p id="invest-result"></p>
+      <button class="back-btn" onclick="goBack()">Back to Tools</button>
+    </div>
+
+    <!-- Forecasting Tool -->
+    <div id="forecast" class="tool-section">
+      <h2>Forecasting Tool</h2>
+      <label>Current Value: <input type="number" id="forecast-current" /></label>
+      <label>Growth Rate (% per period): <input type="number" id="forecast-rate" /></label>
+      <label>Periods: <input type="number" id="forecast-periods" /></label>
+      <label>Type:
+        <select id="forecast-type">
+          <option value="daily">Daily</option>
+          <option value="weekly">Weekly</option>
+          <option value="monthly">Monthly</option>
+          <option value="year">Year</option>
+        </select>
+      </label>
+      <button onclick="calculateForecast()">Calculate</button>
+      <p id="forecast-result"></p>
+      <button class="back-btn" onclick="goBack()">Back to Tools</button>
+    </div>
+
+    <!-- Balancing / T-Account -->
+    <div id="balance" class="tool-section">
+      <h2>Balancing / T-Account</h2>
+      <label>Debit: <input type="number" id="balance-debit" /></label>
+      <label>Credit: <input type="number" id="balance-credit" /></label>
+      <button onclick="checkBalance()">Check Balance</button>
+      <p id="balance-result"></p>
+      <button class="back-btn" onclick="goBack()">Back to Tools</button>
+    </div>
+
+    <!-- Income Tax Calculator -->
+    <div id="tax" class="tool-section">
+      <h2>Income Tax Calculator (PH)</h2>
+      <label>Annual Income: <input type="number" id="tax-income" /></label>
+      <button onclick="calculateTax()">Calculate</button>
+      <p id="tax-result"></p>
+      <button class="back-btn" onclick="goBack()">Back to Tools</button>
+    </div>
+
+    <!-- Scientific Calculator -->
+    <div id="scientific" class="tool-section">
+      <h2>Scientific Calculator</h2>
+      <input type="text" id="sci-display" readonly />
+      <div class="sci-buttons">
+        <button onclick="sciClear()">C</button>
+        <button onclick="sciBack()">⌫</button>
+        <button onclick="sciFunc('sqrt')">√</button>
+        <button onclick="sciInput('/')">÷</button>
+
+        <button onclick="sciInput('7')">7</button>
+        <button onclick="sciInput('8')">8</button>
+        <button onclick="sciInput('9')">9</button>
+        <button onclick="sciInput('*')">×</button>
+
+        <button onclick="sciInput('4')">4</button>
+        <button onclick="sciInput('5')">5</button>
+        <button onclick="sciInput('6')">6</button>
+        <button onclick="sciInput('-')">−</button>
+
+        <button onclick="sciInput('1')">1</button>
+        <button onclick="sciInput('2')">2</button>
+        <button onclick="sciInput('3')">3</button>
+        <button onclick="sciInput('+')">+</button>
+
+        <button onclick="sciInput('0')">0</button>
+        <button onclick="sciInput('.')">.</button>
+        <button onclick="sciCalculate()">=</button>
+        <button onclick="sciFunc('log')">log</button>
+
+        <button onclick="sciFunc('sin')">sin</button>
+        <button onclick="sciFunc('cos')">cos</button>
+        <button onclick="sciFunc('tan')">tan</button>
+        <button onclick="sciInput('**')">^</button>
+      </div>
+      <button class="back-btn" onclick="goBack()">Back to Tools</button>
+    </div>
+
+    <!-- Gross Profit & Margin Tool -->
+    <div id="gross" class="tool-section">
+      <h2>Gross Profit & Margin Tool</h2>
+      <label>Sales Revenue: <input type="number" id="gross-sales" /></label>
+      <label>Cost of Goods Sold (COGS): <input type="number" id="gross-cogs" /></label>
+      <button onclick="calculateGross()">Calculate</button>
+      <p id="gross-result"></p>
+      <button class="back-btn" onclick="goBack()">Back to Tools</button>
+    </div>
+
+    <!-- COGS & Markup Tool -->
+    <div id="cogs" class="tool-section">
+      <h2>COGS & Markup Tool</h2>
+      <label>Cost Price: <input type="number" id="cogs-cost" /></label>
+      <label>Markup Percentage (%): <input type="number" id="cogs-markup" /></label>
+      <button onclick="calculateMarkup()">Calculate</button>
+      <p id="cogs-result"></p>
+      <button class="back-btn" onclick="goBack()">Back to Tools</button>
+    </div>
+
+    <!-- Scheduling Tool -->
+    <div id="scheduling" class="tool-section">
+      <h2>Scheduling Tool</h2>
+      <label>Task: <input type="text" id="schedule-task" /></label>
+      <label>Date: <input type="date" id="schedule-date" /></label>
+      <label>Time: <input type="time" id="schedule-time" /></label>
+      <button onclick="addSchedule()">Add Task</button>
+
+      <h3>Upcoming Tasks</h3>
+      <ul id="schedule-list"></ul>
+      <button class="back-btn" onclick="goBack()">Back to Tools</button>
+    </div>
+
+    <!-- Inventory Management -->
+    <div id="inventory" class="tool-section">
+      <h2>Inventory Management</h2>
+      <label>Item Name: <input type="text" id="inv-item-name" /></label>
+      <label>Quantity: <input type="number" id="inv-quantity" min="0" /></label>
+      <button onclick="addInventoryItem()">Add / Update Item</button>
+
+      <h3>Inventory List</h3>
+      <table id="inventory-table">
+        <thead>
+          <tr><th>Item</th><th>Quantity</th><th>Actions</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <button class="back-btn" onclick="goBack()">Back to Tools</button>
+    </div>
+
+    <!-- Decision Analysis -->
+    <div id="decision" class="tool-section">
+      <h2>Decision Analysis</h2>
+      <p>Enter options and criteria with weights, then score each option.</p>
+      <label>Criteria (comma separated):
+        <input type="text" id="decision-criteria" placeholder="Cost,Quality,Speed" />
+      </label>
+      <label>Weights (comma separated):
+        <input type="text" id="decision-weights" placeholder="0.5,0.3,0.2" />
+      </label>
+      <label>Options (comma separated):
+        <input type="text" id="decision-options" placeholder="Option A,Option B" />
+      </label>
+
+      <button onclick="startDecision()">Start Scoring</button>
+
+      <div id="decision-scoring" style="display:none;">
+        <h3>Score Options</h3>
+        <form id="decision-form"></form>
+        <button onclick="calculateDecision()">Calculate Result</button>
+      </div>
+
+      <p id="decision-result"></p>
+      <button class="back-btn" onclick="goBack()">Back to Tools</button>
+    </div>
+  </section>
+
+  <footer>
+    <h3>All Rights Reserved PaulAdriane 2025</h3>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
